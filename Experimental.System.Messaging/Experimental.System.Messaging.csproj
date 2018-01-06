@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Experimental.System</RootNamespace>
+    <PackageId>Experimental.System.Messaging</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Original author: Microsoft Corporation, Code ported by: Jung Hyun, Nam</Authors>
+    <Company>Microsoft Corporation</Company>
+    <Product>Experimental.System.Messaging (for .NET Core)</Product>
+    <Copyright>© Microsoft Corporation.  All rights reserved.</Copyright>
+    <PackageTags>MSMQ,Fork,Experimental</PackageTags>
+    <Description>This package is a counterfeit of the .NET Framework version System.Messaging assembly for .NET Core applications running on Windows Client and Windows Server. It is provided for development convenience. Do not use this package if Microsoft officially releases this package again. Also, once it is released, you should migrate the code to the new package.
+
+The source code for this package is excerpted from the .NET Framework reference source code.</Description>
+    <PackageLicenseUrl>https://referencesource.microsoft.com/license.html</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReleaseNotes>This version of the System.Messaging package excludes all advanced features such as code access security, execute permissions, and Active Directory integration. I released the package keeping in mind the minimal use of Message Queuing communication facilities. Please confirm whether it is suitable for actual use through unit test and integration test.</PackageReleaseNotes>
+    <PackageProjectUrl>https://referencesource.microsoft.com/#System.Messaging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/krazure/Experimental.System.Messaging</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\netstandard2.0\Experimental.System.Messaging.xml</DocumentationFile>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\netstandard2.0\Experimental.System.Messaging.xml</DocumentationFile>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+
+</Project>
