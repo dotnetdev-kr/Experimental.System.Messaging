@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experimental.System.Messaging", "Experimental.System.Messaging\Experimental.System.Messaging.csproj", "{4E15CB46-6B0A-4571-8B4A-DA0BB24F381F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experimental.System.Messaging", "Experimental.System.Messaging\Experimental.System.Messaging.csproj", "{4E15CB46-6B0A-4571-8B4A-DA0BB24F381F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experimental.System.Messaging.Test", "Experimental.System.Messaging.Test\Experimental.System.Messaging.Test.csproj", "{8B86BFC7-FAF7-40C0-9BAD-BEED6424F003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experimental.System.Messaging.Test", "Experimental.System.Messaging.Test\Experimental.System.Messaging.Test.csproj", "{8B86BFC7-FAF7-40C0-9BAD-BEED6424F003}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FABF2F6A-8B61-4D38-84B9-F046F077553E}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
