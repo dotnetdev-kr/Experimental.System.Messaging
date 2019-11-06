@@ -4,10 +4,10 @@
 // </copyright>                                                                
 //------------------------------------------------------------------------------
 
+using Experimental.System.Messaging;
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Messaging;
 
 namespace Experimental.System.Messaging.Design
 {

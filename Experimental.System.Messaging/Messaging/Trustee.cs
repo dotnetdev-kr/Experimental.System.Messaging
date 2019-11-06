@@ -1,7 +1,8 @@
 using Experimental.System.Messaging;
+using System;
 using System.ComponentModel;
 
-namespace System.Messaging
+namespace Experimental.System.Messaging
 {
 
     /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee"]/*' />
