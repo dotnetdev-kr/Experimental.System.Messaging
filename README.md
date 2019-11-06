@@ -11,5 +11,8 @@ The source code for this package is excerpted from the .NET Framework reference 
 
 ## Release Note
 
+### v1.1.0 (2019-11-06)
+Trustee class namespace was moved from System.Messaging to Experimental.System.Messaging. It could break your existing build process.
+
 ### v1.0.0 (2018-01-06)
 This version of the System.Messaging package excludes all advanced features such as code access security, execute permissions, and Active Directory integration. I released the package keeping in mind the minimal use of Message Queuing communication facilities. Please confirm whether it is suitable for actual use through unit test and integration test.
