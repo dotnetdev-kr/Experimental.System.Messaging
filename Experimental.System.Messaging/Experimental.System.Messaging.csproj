@@ -17,7 +17,7 @@ The source code for this package is excerpted from the .NET Framework reference 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>This version of the System.Messaging package excludes all advanced features such as code access security, execute permissions, and Active Directory integration. I released the package keeping in mind the minimal use of Message Queuing communication facilities. Please confirm whether it is suitable for actual use through unit test and integration test.</PackageReleaseNotes>
     <PackageProjectUrl>https://referencesource.microsoft.com/#System.Messaging</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/krazure/Experimental.System.Messaging</RepositoryUrl>
+    <RepositoryUrl>https://github.com/dotnetdev-kr/Experimental.System.Messaging</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
