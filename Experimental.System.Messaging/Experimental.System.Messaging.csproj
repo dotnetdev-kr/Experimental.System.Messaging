@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Experimental.System</RootNamespace>
     <PackageId>Experimental.System.Messaging</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Original author: Microsoft Corporation, Code ported by: Jung Hyun, Nam</Authors>
     <Company>Microsoft Corporation</Company>
     <Product>Experimental.System.Messaging (for .NET Core)</Product>
@@ -15,7 +15,7 @@
 The source code for this package is excerpted from the .NET Framework reference source code.</Description>
     <PackageLicenseUrl></PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>This version of the System.Messaging package excludes all advanced features such as code access security, execute permissions, and Active Directory integration. I released the package keeping in mind the minimal use of Message Queuing communication facilities. Please confirm whether it is suitable for actual use through unit test and integration test.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.1.0 - Fix Trustee class namespace</PackageReleaseNotes>
     <PackageProjectUrl>https://referencesource.microsoft.com/#System.Messaging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dotnetdev-kr/Experimental.System.Messaging</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
