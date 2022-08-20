@@ -128,6 +128,7 @@ namespace Experimental.System.Messaging
         private object syncRoot = new object();
         private static object staticSyncRoot = new object();
 
+        private bool administerGranted;
         /*
         static MessageQueue()
         {
@@ -3178,6 +3179,115 @@ namespace Experimental.System.Messaging
             this.accessMode = accessMode;
         }
 
+        public void SetPermissions(MessageQueueAccessControlEntry ace)
+        {
+            if (ace == null)
+                throw new ArgumentNullException("ace");
+
+            AccessControlList dacl = new AccessControlList();
+            dacl.Add(ace);
+            SetPermissions(dacl);
+        }
+
+        public void SetPermissions(AccessControlList dacl)
+        {
+            if (dacl == null)
+                throw new ArgumentNullException("dacl");
+
+            if (!administerGranted)
+            {
+                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Administer, PREFIX_FORMAT_NAME + this.FormatName);
+                permission.Demand();
+
+                administerGranted = true;
+            }
+
+            //Access control is not supported in Win9x, need to check
+            //the environment and take appropriate action.
+            AccessControlList.CheckEnvironment();
+
+            byte[] SecurityDescriptor = new byte[100];
+            int lengthNeeded = 0;
+            int mqResult;
+
+            GCHandle sdHandle = GCHandle.Alloc(SecurityDescriptor, GCHandleType.Pinned);
+            try
+            {
+                mqResult = UnsafeNativeMethods.MQGetQueueSecurity(FormatName,
+                                                             NativeMethods.DACL_SECURITY_INFORMATION,
+                                                             sdHandle.AddrOfPinnedObject(),
+                                                             SecurityDescriptor.Length,
+                                                             out lengthNeeded);
+
+                if (mqResult == NativeMethods.MQ_ERROR_SECURITY_DESCRIPTOR_TOO_SMALL)
+                {
+                    sdHandle.Free();
+                    SecurityDescriptor = new byte[lengthNeeded];
+                    sdHandle = GCHandle.Alloc(SecurityDescriptor, GCHandleType.Pinned);
+                    mqResult = UnsafeNativeMethods.MQGetQueueSecurity(FormatName,
+                                                                 NativeMethods.DACL_SECURITY_INFORMATION,
+                                                                 sdHandle.AddrOfPinnedObject(),
+                                                                 SecurityDescriptor.Length,
+                                                                 out lengthNeeded);
+                }
+
+                if (mqResult != NativeMethods.MQ_OK)
+                {
+                    throw new MessageQueueException(mqResult);
+                }
+
+                bool daclPresent, daclDefaulted;
+                IntPtr pDacl;
+                bool success = UnsafeNativeMethods.GetSecurityDescriptorDacl(sdHandle.AddrOfPinnedObject(),
+                                                                                out daclPresent,
+                                                                                out pDacl,
+                                                                                out daclDefaulted);
+
+                if (!success)
+                    throw new Win32Exception();
+
+                // At this point we have the DACL for the queue.  Now we need to create
+                // a new security descriptor with an updated DACL.
+
+                NativeMethods.SECURITY_DESCRIPTOR newSecurityDescriptor = new NativeMethods.SECURITY_DESCRIPTOR();
+                UnsafeNativeMethods.InitializeSecurityDescriptor(newSecurityDescriptor,
+                                                                    NativeMethods.SECURITY_DESCRIPTOR_REVISION);
+                IntPtr newDacl = dacl.MakeAcl(pDacl);
+                try
+                {
+                    success = UnsafeNativeMethods.SetSecurityDescriptorDacl(newSecurityDescriptor,
+                                                                               true,
+                                                                               newDacl,
+                                                                               false);
+
+                    if (!success)
+                        throw new Win32Exception();
+
+                    int result = UnsafeNativeMethods.MQSetQueueSecurity(FormatName,
+                                                                   NativeMethods.DACL_SECURITY_INFORMATION,
+                                                                   newSecurityDescriptor);
+
+                    if (result != NativeMethods.MQ_OK)
+                        throw new MessageQueueException(result);
+                }
+                finally
+                {
+                    AccessControlList.FreeAcl(newDacl);
+                }
+
+                //If the format name has been cached, let's
+                //remove it, since the process might no longer
+                //have access to the corresponding queue.                                
+                queueInfoCache.Remove(QueueInfoKey);
+                formatNameCache.Remove(path.ToUpper(CultureInfo.InvariantCulture));
+            }
+            finally
+            {
+                if (sdHandle.IsAllocated)
+                    sdHandle.Free();
+            }
+
+        }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.QueuePropertyFilter"]/*' />
         /// <internalonly/>
