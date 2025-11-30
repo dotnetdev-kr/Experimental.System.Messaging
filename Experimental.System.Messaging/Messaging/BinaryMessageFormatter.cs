@@ -10,6 +10,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
 
+#pragma warning disable SYSLIB0011 // Type or member is obsolete
+
 namespace Experimental.System.Messaging
 {
     /// <include file='doc\BinaryMessageFormatter.uex' path='docs/doc[@for="BinaryMessageFormatter"]/*' />

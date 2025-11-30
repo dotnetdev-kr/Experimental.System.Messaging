@@ -87,6 +87,7 @@ var queue = new MessageQueue(@"FormatName:Direct=TCP:192.168.1.100\MyPublicQueue
 
 ### v1.2.0 (2025-11-30)
 
+- **Local changes**: Miscellaneous local updates ? cleaned up project files (`.csproj`) and updated targeting to `net8.0`, adjusted CI/build workflow and test project compatibility, and made minor documentation edits.
 - **Breaking Change**: Changed target framework from `netstandard2.0` to `net8.0`. Since MSMQ is a Windows-only technology, the original cross-platform targeting via .NET Standard was unnecessary. Mono has transitioned to WineHQ, .NET Framework already has native System.Messaging support, and other platforms (Silverlight, UWP, Unity) are not applicable targets for this library.
 - **License Correction**: Changed license from MIT to Ms-RL (Microsoft Reciprocal License) to properly comply with the original Microsoft Reference Source license terms.
 - **Documentation**: Revised terminology throughout the documentation. Replaced "counterfeit" with "unofficial port" to better reflect the legitimate nature of this community-maintained derivative work.
