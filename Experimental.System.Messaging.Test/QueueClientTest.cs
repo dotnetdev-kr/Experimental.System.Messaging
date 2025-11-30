@@ -22,7 +22,14 @@ namespace Experimental.System.Messaging.Test
         [TestMethod]
         public void ReceiveMessage()
         {
-            MessageQueue messageQueue = new MessageQueue(".\\Private$\\myQueue");
+            string path = ".\\Private$\\myQueue";
+            // Ensure the queue exists to make test independent
+            if (!MessageQueue.Exists(path))
+            {
+                MessageQueue.Create(path);
+            }
+
+            MessageQueue messageQueue = new MessageQueue(path);
             messageQueue.Formatter = new XmlMessageFormatter(new Type[1]
             {
                 typeof(Order)
