@@ -2,7 +2,10 @@
 
 Experimental port of System.Messaging (for .NET Core)
 
-[![Image](https://img.shields.io/nuget/v/Experimental.System.Messaging.svg)](https://www.nuget.org/packages/Experimental.System.Messaging)
+[![NuGet Version](https://img.shields.io/nuget/v/Experimental.System.Messaging.svg)](https://www.nuget.org/packages/Experimental.System.Messaging)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Experimental.System.Messaging.svg)](https://www.nuget.org/packages/Experimental.System.Messaging)
+[![Build](https://github.com/dotnetdev-kr/Experimental.System.Messaging/actions/workflows/build.yml/badge.svg)](https://github.com/dotnetdev-kr/Experimental.System.Messaging/actions/workflows/build.yml)
+[![License](https://img.shields.io/badge/license-Ms--RL-blue.svg)](LICENSE.txt)
 
 ## Introduction
 
