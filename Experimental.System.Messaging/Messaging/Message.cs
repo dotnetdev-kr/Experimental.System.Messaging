@@ -2416,10 +2416,11 @@ namespace Experimental.System.Messaging
         /// <internalonly/>        
         internal static byte[] StringToBytes(string value)
         {
-            int size = value.Length * 2 + 1;
+            int size = value.Length * 2 + 2;
             byte[] byteBuffer = new byte[size];
-            byteBuffer[size - 1] = 0;
             Encoding.Unicode.GetBytes(value.ToCharArray(), 0, value.Length, byteBuffer, 0);
+            byteBuffer[size - 2] = 0;
+            byteBuffer[size - 1] = 0;
             return byteBuffer;
         }
 
