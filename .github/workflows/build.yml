@@ -19,6 +19,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Install MSMQ
+      run: |
+        Write-Host "Installing MSMQ feature..."
+        Enable-WindowsOptionalFeature -Online -FeatureName MSMQ-Server -All -NoRestart
+        Enable-WindowsOptionalFeature -Online -FeatureName MSMQ-HTTP -All -NoRestart
+        Write-Host "MSMQ installation completed."
+        Get-Service -Name MSMQ | Format-List *
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
