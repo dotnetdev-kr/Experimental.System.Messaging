@@ -1,4 +1,5 @@
 # Experimental.System.Messaging
+
 Experimental port of System.Messaging (for .NET Core)
 
 [![Image](https://img.shields.io/nuget/v/Experimental.System.Messaging.svg)](https://www.nuget.org/packages/Experimental.System.Messaging)
@@ -74,10 +75,14 @@ var queue = new MessageQueue(@"FormatName:Direct=TCP:192.168.1.100\MyPublicQueue
 ## Release Note
 
 ### v1.2.0 (2025-11-30)
-Fixed Unicode string null termination in `StringToBytes` method. This bug affected `MessageQueue.Label`, `MessageQueue.MulticastAddress`, `Message.Label`, `Message.AuthenticationProviderName`, and queue format name properties, causing them not to persist correctly to MSMQ.
+
+- Added support for setting access control on queue. Ported `AccessControlEntry`, `AccessControlEntryType`, `AccessControlList`, `MessageQueueAccessControlEntry`, `MessageQueuePermission`, `MessageQueuePermissionAccess`, `MessageQueuePermissionEntry`, and `MessageQueuePermissionEntryCollection` classes to provide access control permissions support. (PR #5, contributed by @j0hnth0m)
+- Fixed Unicode string null termination in `StringToBytes` method. This bug affected `MessageQueue.Label`, `MessageQueue.MulticastAddress`, `Message.Label`, `Message.AuthenticationProviderName`, and queue format name properties, causing them not to persist correctly to MSMQ.
 
 ### v1.1.0 (2019-11-06)
+
 Trustee class namespace was moved from System.Messaging to Experimental.System.Messaging. It could break your existing build process.
 
 ### v1.0.0 (2018-01-06)
+
 This version of the System.Messaging package excludes all advanced features such as code access security, execute permissions, and Active Directory integration. I released the package keeping in mind the minimal use of Message Queuing communication facilities. Please confirm whether it is suitable for actual use through unit test and integration test.
