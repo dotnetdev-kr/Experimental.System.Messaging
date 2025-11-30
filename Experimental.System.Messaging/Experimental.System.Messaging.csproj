@@ -15,11 +15,12 @@
 The source code for this package is derived from the .NET Framework reference source code.</Description>
     <PackageLicenseUrl></PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>1.1.0 - Fix Trustee class namespace</PackageReleaseNotes>
     <PackageProjectUrl>https://referencesource.microsoft.com/#System.Messaging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dotnetdev-kr/Experimental.System.Messaging</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -36,6 +37,10 @@ The source code for this package is derived from the .NET Framework reference so
 
   <ItemGroup>
     <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
