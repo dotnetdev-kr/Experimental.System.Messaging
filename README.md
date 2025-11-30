@@ -6,9 +6,17 @@ Experimental port of System.Messaging (for .NET Core)
 
 ## Introduction
 
-This package is a counterfeit of the .NET Framework version System.Messaging assembly for .NET Core applications running on Windows Client and Windows Server. It is provided for development convenience. Do not use this package if Microsoft officially releases this package again. Also, once it is released, you should migrate the code to the new package.
+This package is an unofficial port of the .NET Framework System.Messaging assembly for .NET Core/.NET 8+ applications running on Windows. It is provided for development convenience. If Microsoft officially releases an MSMQ client package, you should migrate to the official package.
 
-The source code for this package is excerpted from the .NET Framework reference source code.
+The source code for this package is derived from the .NET Framework reference source code.
+
+## License Notice
+
+This project is licensed under the **Microsoft Reciprocal License (Ms-RL)**.
+
+The original source code was obtained from Microsoft Reference Source (referencesource.microsoft.com) when it was available under the Ms-RL license. Due to insufficient understanding at the time, this package was mistakenly distributed under the MIT License from its initial release until version 1.1.0. We sincerely apologize for this error and have corrected the license to Ms-RL starting from version 1.2.0.
+
+As a derivative work based on Ms-RL licensed code, this package must also be distributed under Ms-RL in accordance with the license terms.
 
 ## Disclaimer
 
@@ -76,13 +84,16 @@ var queue = new MessageQueue(@"FormatName:Direct=TCP:192.168.1.100\MyPublicQueue
 
 ### v1.2.0 (2025-11-30)
 
-- Added support for setting access control on queue. Ported `AccessControlEntry`, `AccessControlEntryType`, `AccessControlList`, `MessageQueueAccessControlEntry`, `MessageQueuePermission`, `MessageQueuePermissionAccess`, `MessageQueuePermissionEntry`, and `MessageQueuePermissionEntryCollection` classes to provide access control permissions support. (PR #5, contributed by @j0hnth0m)
-- Fixed Unicode string null termination in `StringToBytes` method. This bug affected `MessageQueue.Label`, `MessageQueue.MulticastAddress`, `Message.Label`, `Message.AuthenticationProviderName`, and queue format name properties, causing them not to persist correctly to MSMQ.
+- **Breaking Change**: Changed target framework from `netstandard2.0` to `net8.0`. Since MSMQ is a Windows-only technology, the original cross-platform targeting via .NET Standard was unnecessary. Mono has transitioned to WineHQ, .NET Framework already has native System.Messaging support, and other platforms (Silverlight, UWP, Unity) are not applicable targets for this library.
+- **License Correction**: Changed license from MIT to Ms-RL (Microsoft Reciprocal License) to properly comply with the original Microsoft Reference Source license terms.
+- **Documentation**: Revised terminology throughout the documentation. Replaced "counterfeit" with "unofficial port" to better reflect the legitimate nature of this community-maintained derivative work.
+- **New Feature**: Added support for setting access control on queue. Ported `AccessControlEntry`, `AccessControlEntryType`, `AccessControlList`, `MessageQueueAccessControlEntry`, `MessageQueuePermission`, `MessageQueuePermissionAccess`, `MessageQueuePermissionEntry`, and `MessageQueuePermissionEntryCollection` classes. (PR #5, contributed by @j0hnth0m)
+- **Bug Fix**: Fixed Unicode string null termination in `StringToBytes` method. This bug affected `MessageQueue.Label`, `MessageQueue.MulticastAddress`, `Message.Label`, `Message.AuthenticationProviderName`, and queue format name properties.
 
 ### v1.1.0 (2019-11-06)
 
-Trustee class namespace was moved from System.Messaging to Experimental.System.Messaging. It could break your existing build process.
+- **Breaking Change**: Moved `Trustee` class namespace from `System.Messaging` to `Experimental.System.Messaging`.
 
 ### v1.0.0 (2018-01-06)
 
-This version of the System.Messaging package excludes all advanced features such as code access security, execute permissions, and Active Directory integration. I released the package keeping in mind the minimal use of Message Queuing communication facilities. Please confirm whether it is suitable for actual use through unit test and integration test.
+- **Initial Release**: Ported System.Messaging for .NET Core with minimal feature set. Excludes advanced features such as code access security, execute permissions, and Active Directory integration.

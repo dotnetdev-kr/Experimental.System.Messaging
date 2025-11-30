@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Experimental.System</RootNamespace>
     <PackageId>Experimental.System.Messaging</PackageId>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Original author: Microsoft Corporation, Code ported by: Jung Hyun, Nam</Authors>
     <Company>Microsoft Corporation</Company>
     <Product>Experimental.System.Messaging (for .NET Core)</Product>
     <Copyright>© Microsoft Corporation.  All rights reserved.</Copyright>
     <PackageTags>MSMQ,Fork,Experimental</PackageTags>
-    <Description>This package is a counterfeit of the .NET Framework version System.Messaging assembly for .NET Core applications running on Windows Client and Windows Server. It is provided for development convenience. Do not use this package if Microsoft officially releases this package again. Also, once it is released, you should migrate the code to the new package.
+    <Description>This package is an unofficial port of the .NET Framework System.Messaging assembly for .NET Core/.NET 8+ applications running on Windows. It is provided for development convenience. If Microsoft officially releases an MSMQ client package, you should migrate to the official package.
 
-The source code for this package is excerpted from the .NET Framework reference source code.</Description>
+The source code for this package is derived from the .NET Framework reference source code.</Description>
     <PackageLicenseUrl></PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>1.1.0 - Fix Trustee class namespace</PackageReleaseNotes>
@@ -24,13 +24,13 @@ The source code for this package is excerpted from the .NET Framework reference 
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Release\netstandard2.0\Experimental.System.Messaging.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net8.0\Experimental.System.Messaging.xml</DocumentationFile>
     <WarningLevel>2</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\netstandard2.0\Experimental.System.Messaging.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net8.0\Experimental.System.Messaging.xml</DocumentationFile>
     <WarningLevel>2</WarningLevel>
   </PropertyGroup>
 
@@ -42,7 +42,7 @@ The source code for this package is excerpted from the .NET Framework reference 
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Security.Permissions" Version="6.0.0" />
+    <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
