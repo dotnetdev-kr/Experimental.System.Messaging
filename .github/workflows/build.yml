@@ -23,9 +23,21 @@ jobs:
       run: |
         Write-Host "Installing MSMQ feature..."
         Enable-WindowsOptionalFeature -Online -FeatureName MSMQ-Server -All -NoRestart
-        Enable-WindowsOptionalFeature -Online -FeatureName MSMQ-HTTP -All -NoRestart
         Write-Host "MSMQ installation completed."
-        Get-Service -Name MSMQ | Format-List *
+        
+        Write-Host "Starting MSMQ service..."
+        Start-Service -Name MSMQ
+        Get-Service -Name MSMQ
+        
+        Write-Host "Creating test queue..."
+        [System.Reflection.Assembly]::LoadWithPartialName("System.Messaging") | Out-Null
+        $queuePath = ".\Private$\myQueue"
+        if (-not [System.Messaging.MessageQueue]::Exists($queuePath)) {
+            [System.Messaging.MessageQueue]::Create($queuePath)
+            Write-Host "Queue created: $queuePath"
+        } else {
+            Write-Host "Queue already exists: $queuePath"
+        }
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
